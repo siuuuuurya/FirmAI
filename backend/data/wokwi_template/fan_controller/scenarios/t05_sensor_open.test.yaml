@@ -1,0 +1,10 @@
+name: 'T05 sensor open / stuck at 5V (ADC=1023) -> ERROR'
+version: 1
+steps:
+  - delay: 500ms
+  - set-control:
+      part-id: btn_open
+      control: pressed
+      value: 1
+  - delay: 1500ms
+  - wait-serial: 'FAN=OFF STATE=ERROR'

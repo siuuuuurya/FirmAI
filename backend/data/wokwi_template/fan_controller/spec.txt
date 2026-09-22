@@ -1,0 +1,7 @@
+COOLING FAN CONTROLLER - SPECIFICATION
+1. Read the NTC temperature sensor on A0 every 500 ms; convert to whole degrees C (rounded).
+2. Fan (pin 9) is ON when temperature >= 30 C, OFF when below 30 C.
+3. If the ADC reading is 0 (shorted) or 1023 (open circuit), the sensor is faulty:
+   state = ERROR, fan OFF, error LED (pin 8) ON.
+4. When a valid reading returns, state returns to NORMAL and the error LED turns OFF.
+5. Every cycle print over Serial at 9600 baud:  TEMP=<int> FAN=<ON|OFF> STATE=<NORMAL|ERROR>

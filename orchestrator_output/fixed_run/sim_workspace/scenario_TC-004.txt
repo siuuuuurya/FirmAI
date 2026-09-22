@@ -1,0 +1,5 @@
+# scenario for TC-004
+TICKS 6
+TICK_US 100000
+WATCH 8 9 14
+EV 0 analog 14 444

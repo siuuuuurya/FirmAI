@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "author": "Antigravity Autonomous Agent",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": -90,
+      "left": 320,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_fan",
+      "top": -140,
+      "left": 40,
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_err",
+      "top": -140,
+      "left": 130,
+      "attrs": {
+        "color": "red"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_fan",
+      "top": -60,
+      "left": 30,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_err",
+      "top": -60,
+      "left": 120,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:5V",
+      "ntc1:VCC",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.2",
+      "ntc1:GND",
+      "black",
+      []
+    ],
+    [
+      "ntc1:OUT",
+      "uno:A0",
+      "green",
+      []
+    ],
+    [
+      "uno:9",
+      "r_fan:1",
+      "blue",
+      []
+    ],
+    [
+      "r_fan:2",
+      "led_fan:A",
+      "blue",
+      []
+    ],
+    [
+      "led_fan:C",
+      "uno:GND.1",
+      "black",
+      []
+    ],
+    [
+      "uno:8",
+      "r_err:1",
+      "red",
+      []
+    ],
+    [
+      "r_err:2",
+      "led_err:A",
+      "red",
+      []
+    ],
+    [
+      "led_err:C",
+      "uno:GND.1",
+      "black",
+      []
+    ]
+  ]
+}

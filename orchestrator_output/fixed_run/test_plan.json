@@ -1,0 +1,98 @@
+[
+  {
+    "test_id": "TC-001",
+    "name": "Nominal Below Threshold (25C)",
+    "category": "nominal",
+    "description": "Temperature at 25C (below 30C threshold). Fan should be OFF, Error OFF.",
+    "inputs": {
+      "temperature_c": 25.0,
+      "adc": 512
+    },
+    "expected_output": {
+      "fan_pin": 0,
+      "err_pin": 0,
+      "serial_contains": "TEMP=25 FAN=OFF STATE=NORMAL"
+    }
+  },
+  {
+    "test_id": "TC-002",
+    "name": "Boundary - Just Below Threshold (29C)",
+    "category": "boundary",
+    "description": "Temperature at 29C (just below 30C threshold). Fan should be OFF, Error OFF.",
+    "inputs": {
+      "temperature_c": 29.0,
+      "adc": 466
+    },
+    "expected_output": {
+      "fan_pin": 0,
+      "err_pin": 0,
+      "serial_contains": "TEMP=29 FAN=OFF STATE=NORMAL"
+    }
+  },
+  {
+    "test_id": "TC-003",
+    "name": "Boundary - Exactly at Threshold (30C)",
+    "category": "boundary",
+    "description": "Temperature exactly at 30C. Fan must be ON, Error OFF.",
+    "inputs": {
+      "temperature_c": 30.0,
+      "adc": 455
+    },
+    "expected_output": {
+      "fan_pin": 1,
+      "err_pin": 0,
+      "serial_contains": "TEMP=30 FAN=ON STATE=NORMAL"
+    }
+  },
+  {
+    "test_id": "TC-004",
+    "name": "Boundary - Just Above Threshold (31C)",
+    "category": "boundary",
+    "description": "Temperature at 31C (just above 30C threshold). Fan should be ON, Error OFF.",
+    "inputs": {
+      "temperature_c": 31.0,
+      "adc": 444
+    },
+    "expected_output": {
+      "fan_pin": 1,
+      "err_pin": 0,
+      "serial_contains": "TEMP=31 FAN=ON STATE=NORMAL"
+    }
+  },
+  {
+    "test_id": "TC-005",
+    "name": "Nominal Above Threshold (35C)",
+    "category": "nominal",
+    "description": "Temperature at 35C. Fan should be ON, Error OFF.",
+    "inputs": {
+      "temperature_c": 35.0,
+      "adc": 403
+    },
+    "expected_output": {
+      "fan_pin": 1,
+      "err_pin": 0,
+      "serial_contains": "TEMP=35 FAN=ON STATE=NORMAL"
+    }
+  },
+  {
+    "test_id": "TC-006",
+    "name": "Sensor Disconnection / Short to GND (ADC=0)",
+    "category": "fault-injection",
+    "description": "Sensor shorted to GND (ADC=0). Error LED must be ON, Fan OFF.",
+    "inputs": {
+      "temperature_c": -999,
+      "adc": 0
+    },
+    "expected_output": {
+      "fan_pin": 0,
+      "err_pin": 1,
+      "serial_contains": "TEMP=0 FAN=OFF STATE=ERROR"
+    }
+  },
+  {
+    "test_id": "TC-007",
+    "name": "Sensor Disconnection / Open Circuit (ADC=1023)",
+    "category": "fault-injection",
+    "description": "Sensor disconnected/open circuit"
+  }
+]

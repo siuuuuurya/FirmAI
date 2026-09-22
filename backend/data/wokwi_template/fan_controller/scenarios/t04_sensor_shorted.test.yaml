@@ -1,0 +1,10 @@
+name: 'T04 sensor shorted to GND (ADC=0) -> ERROR'
+version: 1
+steps:
+  - delay: 500ms
+  - set-control:
+      part-id: btn_short
+      control: pressed
+      value: 1
+  - delay: 1500ms
+  - wait-serial: 'FAN=OFF STATE=ERROR'

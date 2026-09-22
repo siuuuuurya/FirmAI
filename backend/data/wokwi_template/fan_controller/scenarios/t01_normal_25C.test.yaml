@@ -1,0 +1,10 @@
+name: 'T01 normal - 25C fan stays OFF'
+version: 1
+steps:
+  - delay: 500ms
+  - set-control:
+      part-id: ntc1
+      control: temperature
+      value: 25
+  - delay: 1500ms
+  - wait-serial: 'TEMP=25 FAN=OFF STATE=NORMAL'

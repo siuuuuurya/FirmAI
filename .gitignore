@@ -1,0 +1,47 @@
+# Secrets & Environment variables
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+backend/venv/
+backend/.pytest_cache/
+.pytest_cache/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database & Runtime artifacts
+*.db
+*.sqlite3
+backend/data/*.db
+backend/data/*.sqlite3
+backend/data/uploads/*
+backend/data/workspaces/*
+backend/data/reports/*
+!backend/data/reports/.gitkeep
+!backend/data/wokwi_template/**
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

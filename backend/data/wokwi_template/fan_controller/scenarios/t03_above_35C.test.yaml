@@ -1,0 +1,10 @@
+name: 'T03 above threshold - 35C fan ON'
+version: 1
+steps:
+  - delay: 500ms
+  - set-control:
+      part-id: ntc1
+      control: temperature
+      value: 35
+  - delay: 1500ms
+  - wait-serial: 'TEMP=35 FAN=ON STATE=NORMAL'

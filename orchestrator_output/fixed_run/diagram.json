@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "author": "Autonomous AI Agent",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-uno",
+      "id": "uno",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": -90,
+      "left": 320,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_fan",
+      "top": -140,
+      "left": 40,
+      "attrs": {
+        "color": "blue"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_err",
+      "top": -140,
+      "left": 130,
+      "attrs": {
+        "color": "red"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "uno:5V",
+      "ntc1:VCC",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.2",
+      "ntc1:GND",
+      "black",
+      []
+    ],
+    [
+      "ntc1:OUT",
+      "uno:A0",
+      "green",
+      []
+    ],
+    [
+      "uno:9",
+      "led_fan:A",
+      "blue",
+      []
+    ],
+    [
+      "uno:GND.1",
+      "led_fan:C",
+      "black",
+      []
+    ],
+    [
+      "uno:8",
+      "led_err:A",
+      "red",
+      []
+    ],
+    [
+      "uno:GND.3",
+      "led_err:C",
+      "black",
+      []
+    ]
+  ]
+}

@@ -1,0 +1,10 @@
+name: 'T02 boundary - 30C fan must be ON (spec: >= 30)'
+version: 1
+steps:
+  - delay: 500ms
+  - set-control:
+      part-id: ntc1
+      control: temperature
+      value: 30
+  - delay: 1500ms
+  - wait-serial: 'TEMP=30 FAN=ON STATE=NORMAL'

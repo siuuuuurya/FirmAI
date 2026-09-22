@@ -1,0 +1,80 @@
+[
+  {
+    "test_id": "TC-001",
+    "name": "Nominal Below Threshold (25.0\u00b0C)",
+    "category": "nominal",
+    "description": "Fan must be OFF below 30\u00b0C. Error LED must be OFF.",
+    "inputs": {
+      "temperature_c": 25.0,
+      "adc": 788
+    },
+    "expected_output": {
+      "fan_pin": 0,
+      "err_pin": 0,
+      "state": "NORMAL",
+      "serial_contains": "TEMP=25 FAN=OFF"
+    }
+  },
+  {
+    "test_id": "TC-002",
+    "name": "Boundary Threshold Value (Exactly 30.0\u00b0C)",
+    "category": "boundary",
+    "description": "Fan must be ON at 30\u00b0C (per spec 'ON at or above 30 \u00b0C'). Error LED OFF.",
+    "inputs": {
+      "temperature_c": 30.0,
+      "adc": 820
+    },
+    "expected_output": {
+      "fan_pin": 1,
+      "err_pin": 0,
+      "state": "NORMAL",
+      "serial_contains": "TEMP=30 FAN=ON"
+    }
+  },
+  {
+    "test_id": "TC-003",
+    "name": "Nominal Above Threshold (35.0\u00b0C)",
+    "category": "nominal",
+    "description": "Fan must be ON above 30\u00b0C. Error LED OFF.",
+    "inputs": {
+      "temperature_c": 35.0,
+      "adc": 850
+    },
+    "expected_output": {
+      "fan_pin": 1,
+      "err_pin": 0,
+      "state": "NORMAL",
+      "serial_contains": "TEMP=35 FAN=ON"
+    }
+  },
+  {
+    "test_id": "TC-004",
+    "name": "Fault Injection: Sensor Disconnection / Short to GND (ADC=0)",
+    "category": "fault-injection",
+    "description": "Sensor disconnected/short to GND. Error LED must be ON.",
+    "inputs": {
+      "temperature_c": -999,
+      "adc": 0
+    },
+    "expected_output": {
+      "err_pin": 1,
+      "state": "ERROR",
+      "serial_contains": "STATE=ERROR"
+    }
+  },
+  {
+    "test_id": "TC-005",
+    "name": "Fault Injection: Sensor Open Circuit / Pulled High (ADC=1023)",
+    "category": "fault-injection",
+    "description": "Sensor open-circuit disconnected (ADC=1023). Error LED must be ON.",
+    "inputs": {
+      "temperature_c": 999,
+      "adc": 1023
+    },
+    "expected_output": {
+      "err_pin": 1,
+      "state": "ERROR",
+      "serial_contains": "STATE=ERROR"
+    }
+  }
+]
